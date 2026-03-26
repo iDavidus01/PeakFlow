@@ -1,6 +1,31 @@
 <resources>
-    <string name="app_name">PeakFlow</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Peak Flow</string>
+    <string name="title_home">Góry</string>
+    <string name="title_profile">Profil</string>
+    <string name="home_subtitle">Odkrywaj szczyty i buduj swoje doświadczenie</string>
+    <string name="search_hint">Szukaj gór…</string>
+
+    <!-- Detail -->
+    <string name="requirements_title">Wymagania</string>
+    <string name="mark_conquered">Oznacz jako zdobyta</string>
+    <string name="conquered">Zdobyta ✓</string>
+
+    <!-- Stats -->
+    <string name="stat_condition">Kondycja</string>
+    <string name="stat_technique">Technika</string>
+    <string name="stat_acclimatization">Aklimatyzacja</string>
+    <string name="stat_risk">Ryzyko</string>
+
+    <string name="stat_condition_desc">Siła i wytrzymałość fizyczna</string>
+    <string name="stat_technique_desc">Umiejętności wspinaczkowe</string>
+    <string name="stat_acclimatization_desc">Przystosowanie do wysokości</string>
+    <string name="stat_risk_desc">Odporność na zagrożenia</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Twój Profil</string>
+    <string name="profile_subtitle">Twój progres wspinaczkowy</string>
+    <string name="conquered_label">Zdobyte</string>
+    <string name="total_label">Wszystkie</string>
+    <string name="xp_label">Łączne XP</string>
+    <string name="stats_title">Twoje Statystyki</string>
 </resources>
