@@ -9,5 +9,10 @@ data class Mountain(
     val techReq: Int,
     val acclReq: Int,
     val riskReq: Int,
-    val description: String
-)
+    val description: String,
+    val imageUrl: String = "",
+    val lat: Double = 0.0,
+    val lng: Double = 0.0
+) {
+    val totalDifficulty: Int get() = condReq + techReq + acclReq + riskReq
+}

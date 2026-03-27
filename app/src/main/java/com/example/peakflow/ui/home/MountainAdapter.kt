@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.peakflow.R
 import com.example.peakflow.data.Mountain
 
@@ -22,6 +23,7 @@ class MountainAdapter(
         val height: TextView = view.findViewById(R.id.tv_mountain_height)
         val region: TextView = view.findViewById(R.id.tv_mountain_region)
         val status: ImageView = view.findViewById(R.id.iv_conquered_status)
+        val thumb: ImageView = view.findViewById(R.id.iv_mountain_thumb)
         val card: View = view.findViewById(R.id.card_mountain)
     }
 
@@ -38,6 +40,13 @@ class MountainAdapter(
         holder.height.text = "${m.height} m n.p.m."
         holder.region.text = m.region
         holder.status.visibility = if (item.isConquered) View.VISIBLE else View.GONE
+
+        holder.thumb.load(m.imageUrl) {
+            crossfade(true)
+            placeholder(R.drawable.mountain_placeholder)
+            error(R.drawable.mountain_placeholder)
+        }
+
         holder.card.setOnClickListener { onItemClick(m) }
     }
 

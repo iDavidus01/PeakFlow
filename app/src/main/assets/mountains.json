@@ -8,7 +8,10 @@
     "techReq": 4,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Najwyższy szczyt świata. Wspinaczka na Everest to ekstremalny test wytrzymałości i aklimatyzacji. Wyprawa trwa zwykle 2 miesiące, z wieloma obozami na trasie przez South Col lub North Ridge."
+    "description": "Najwyższy szczyt świata. Wspinaczka na Everest to ekstremalny test wytrzymałości i aklimatyzacji. Wyprawa trwa zwykle 2 miesiące, z wieloma obozami na trasie przez South Col lub North Ridge.",
+    "imageUrl": "file:///android_asset/images/1.jpeg",
+    "lat": 27.9881,
+    "lng": 86.925
   },
   {
     "id": 2,
@@ -19,7 +22,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Drugi najwyższy szczyt świata, uważany za najtrudniejszą górę do zdobycia. Strome ściany, nieprzewidywalna pogoda i wysoki współczynnik śmiertelności czynią K2 ostatecznym wyzwaniem alpinistycznym."
+    "description": "Drugi najwyższy szczyt świata, uważany za najtrudniejszą górę do zdobycia. Strome ściany, nieprzewidywalna pogoda i wysoki współczynnik śmiertelności czynią K2 ostatecznym wyzwaniem alpinistycznym.",
+    "imageUrl": "file:///android_asset/images/2.jpg",
+    "lat": 35.88,
+    "lng": 76.5151
   },
   {
     "id": 3,
@@ -30,7 +36,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Trzeci najwyższy szczyt świata. Masyw Kangchenjungi jest ogromny i skomplikowany, z wieloma grzbietami i lodowcami. Tradycja nakazuje zatrzymać się metr przed szczytem z szacunku dla świętości góry."
+    "description": "Trzeci najwyższy szczyt świata. Masyw Kangchenjungi jest ogromny i skomplikowany, z wieloma grzbietami i lodowcami. Tradycja nakazuje zatrzymać się metr przed szczytem z szacunku dla świętości góry.",
+    "imageUrl": "file:///android_asset/images/3.jpeg",
+    "lat": 27.7025,
+    "lng": 88.1475
   },
   {
     "id": 4,
@@ -41,7 +50,10 @@
     "techReq": 3,
     "acclReq": 4,
     "riskReq": 4,
-    "description": "Najwyższy szczyt Ameryki Północnej. Położony blisko koła podbiegunowego, Denali jest znany z ekstremalnie niskich temperatur i silnych wiatrów. Typowa wyprawa trwa 17-21 dni przez West Buttress."
+    "description": "Najwyższy szczyt Ameryki Północnej. Położony blisko koła podbiegunowego, Denali jest znany z ekstremalnie niskich temperatur i silnych wiatrów. Typowa wyprawa trwa 17-21 dni przez West Buttress.",
+    "imageUrl": "file:///android_asset/images/4.jpeg",
+    "lat": 63.0692,
+    "lng": -151.007
   },
   {
     "id": 5,
@@ -52,7 +64,10 @@
     "techReq": 1,
     "acclReq": 3,
     "riskReq": 2,
-    "description": "Najwyższy szczyt Afryki i najwyższy wolnostojący wulkan świata. Trekkingowa wspinaczka bez potrzeby specjalistycznego sprzętu. Popularna trasa Machame zajmuje 6-7 dni."
+    "description": "Najwyższy szczyt Afryki i najwyższy wolnostojący wulkan świata. Trekkingowa wspinaczka bez potrzeby specjalistycznego sprzętu. Popularna trasa Machame zajmuje 6-7 dni.",
+    "imageUrl": "file:///android_asset/images/5.jpeg",
+    "lat": -3.0674,
+    "lng": 37.3556
   },
   {
     "id": 6,
@@ -63,7 +78,10 @@
     "techReq": 2,
     "acclReq": 3,
     "riskReq": 3,
-    "description": "Najwyższy szczyt Europy. Wygasły wulkan z dwoma wierzchołkami. Standardowa trasa od południa jest stosunkowo prosta technicznie, ale wymaga dobrej kondycji i aklimatyzacji. Pogoda potrafi być zdradliwa."
+    "description": "Najwyższy szczyt Europy. Wygasły wulkan z dwoma wierzchołkami. Standardowa trasa od południa jest stosunkowo prosta technicznie, ale wymaga dobrej kondycji i aklimatyzacji.",
+    "imageUrl": "file:///android_asset/images/6.jpeg",
+    "lat": 43.3499,
+    "lng": 42.4453
   },
   {
     "id": 7,
@@ -74,7 +92,10 @@
     "techReq": 2,
     "acclReq": 4,
     "riskReq": 3,
-    "description": "Najwyższy szczyt obu Ameryk i najwyższy szczyt poza Azją. Trasa normalna nie wymaga wspinaczki technicznej, ale wysokość i wiatr stanowią poważne wyzwanie. Wyprawa trwa zwykle 18-20 dni."
+    "description": "Najwyższy szczyt obu Ameryk i najwyższy poza Azją. Trasa normalna nie wymaga wspinaczki technicznej, ale wysokość i wiatr stanowią poważne wyzwanie. Wyprawa trwa zwykle 18-20 dni.",
+    "imageUrl": "file:///android_asset/images/7.jpeg",
+    "lat": -32.6532,
+    "lng": -70.0109
   },
   {
     "id": 8,
@@ -85,7 +106,10 @@
     "techReq": 3,
     "acclReq": 2,
     "riskReq": 4,
-    "description": "Najwyższy szczyt Antarktydy. Logistycznie jedna z najtrudniej dostępnych gór świata. Ekstremalne zimno i izolacja to główne zagrożenia. Technicznie umiarkowana wspinaczka lodowa."
+    "description": "Najwyższy szczyt Antarktydy. Logistycznie jedna z najtrudniej dostępnych gór świata. Ekstremalne zimno i izolacja to główne zagrożenia.",
+    "imageUrl": "file:///android_asset/images/8.jpeg",
+    "lat": -78.5255,
+    "lng": -85.6171
   },
   {
     "id": 9,
@@ -96,7 +120,10 @@
     "techReq": 4,
     "acclReq": 1,
     "riskReq": 3,
-    "description": "Najwyższy szczyt Oceanii (kontynentalnie). Jedyna góra z Korony Ziemi wymagająca wspinaczki skalnej. Trudna logistyka dojazdu przez dżunglę. Ściana północna oferuje interesujące wspinanie."
+    "description": "Najwyższy szczyt Oceanii. Jedyna góra z Korony Ziemi wymagająca wspinaczki skalnej. Trudna logistyka dojazdu przez dżunglę.",
+    "imageUrl": "file:///android_asset/images/9.jpeg",
+    "lat": -4.0833,
+    "lng": 137.1167
   },
   {
     "id": 10,
@@ -107,7 +134,10 @@
     "techReq": 3,
     "acclReq": 2,
     "riskReq": 3,
-    "description": "Najwyższy szczyt Alp. Popularna góra z wieloma trasami o różnym stopniu trudności. Trasa normalna przez Goûter wymaga wspinaczki po lodowcu i przejścia przez Grand Couloir."
+    "description": "Najwyższy szczyt Alp. Popularna góra z wieloma trasami o różnym stopniu trudności. Trasa normalna przez Goûter wymaga wspinaczki po lodowcu.",
+    "imageUrl": "file:///android_asset/images/10.jpeg",
+    "lat": 45.8326,
+    "lng": 6.8652
   },
   {
     "id": 11,
@@ -118,7 +148,10 @@
     "techReq": 4,
     "acclReq": 2,
     "riskReq": 4,
-    "description": "Ikoniczny piramidalny szczyt Alp. Trasa Hörnli jest klasyczną wspinaczką skalną po ostrym grzbiecie. Wymagająca technicznie i kondycyjnie, z ryzykiem spadających kamieni."
+    "description": "Ikoniczny piramidalny szczyt Alp. Trasa Hörnli jest klasyczną wspinaczką skalną po ostrym grzbiecie. Wymagająca technicznie i kondycyjnie.",
+    "imageUrl": "file:///android_asset/images/11.jpeg",
+    "lat": 45.9763,
+    "lng": 7.6583
   },
   {
     "id": 12,
@@ -129,7 +162,10 @@
     "techReq": 2,
     "acclReq": 1,
     "riskReq": 2,
-    "description": "Najwyższy szczyt Polski. Popularna góra tatrzańska z dobrze oznakowanym szlakiem. Wyprawa jednodniowa, idealna jako pierwszy poważny cel górski. Piękne widoki na Morskie Oko."
+    "description": "Najwyższy szczyt Polski. Popularna góra tatrzańska z dobrze oznakowanym szlakiem. Wyprawa jednodniowa, idealna jako pierwszy poważny cel górski.",
+    "imageUrl": "file:///android_asset/images/12.jpeg",
+    "lat": 49.1793,
+    "lng": 20.088
   },
   {
     "id": 13,
@@ -140,7 +176,10 @@
     "techReq": 3,
     "acclReq": 1,
     "riskReq": 2,
-    "description": "Najwyższy szczyt Tatr i Karpat. Dostępny tylko z przewodnikiem tatrzańskim po stronie słowackiej. Wymagająca wspinaczka po żlebach i graniach z elementami asekuracji."
+    "description": "Najwyższy szczyt Tatr i Karpat. Dostępny tylko z przewodnikiem po stronie słowackiej. Wymagająca wspinaczka po żlebach i graniach.",
+    "imageUrl": "file:///android_asset/images/13.jpeg",
+    "lat": 49.1633,
+    "lng": 20.1333
   },
   {
     "id": 14,
@@ -151,7 +190,10 @@
     "techReq": 1,
     "acclReq": 1,
     "riskReq": 1,
-    "description": "Najwyższy szczyt Karkonoszy i Sudetów. Łatwy szlak turystyczny, idealny na początek przygody z górami. Na szczycie charakterystyczny budynek obserwatorium meteorologicznego."
+    "description": "Najwyższy szczyt Karkonoszy i Sudetów. Łatwy szlak turystyczny, idealny na początek przygody z górami. Na szczycie charakterystyczny budynek obserwatorium.",
+    "imageUrl": "file:///android_asset/images/14.jpeg",
+    "lat": 50.736,
+    "lng": 15.7397
   },
   {
     "id": 15,
@@ -162,7 +204,10 @@
     "techReq": 3,
     "acclReq": 1,
     "riskReq": 2,
-    "description": "Najwyższy szczyt Słowenii, symbol narodowy. Wspinaczka wymaga użycia via ferraty. Tradycja mówi, że każdy Słoweniec powinien go zdobyć przynajmniej raz w życiu."
+    "description": "Najwyższy szczyt Słowenii, symbol narodowy. Wspinaczka wymaga użycia via ferraty. Każdy Słoweniec powinien go zdobyć przynajmniej raz.",
+    "imageUrl": "file:///android_asset/images/15.jpeg",
+    "lat": 46.3783,
+    "lng": 13.84
   },
   {
     "id": 16,
@@ -173,7 +218,10 @@
     "techReq": 3,
     "acclReq": 1,
     "riskReq": 3,
-    "description": "Najwyższy szczyt Austrii. Klasyczna alpejska wspinaczka po lodowcu. Trasa normalna prowadzi przez schronisko Erzherzog-Johann-Hütte, najwyżej położone schronisko w Austrii."
+    "description": "Najwyższy szczyt Austrii. Klasyczna alpejska wspinaczka po lodowcu. Panoramiczne widoki na Alpy.",
+    "imageUrl": "file:///android_asset/images/16.jpeg",
+    "lat": 47.0744,
+    "lng": 12.6939
   },
   {
     "id": 17,
@@ -184,7 +232,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Czwarty najwyższy szczyt świata, połączony z Everestem przez South Col. Ściana Lhotse to jedna z największych ścian skalnych na świecie. Wyprawa często łączona z wejściem na Everest."
+    "description": "Czwarty najwyższy szczyt świata, połączony z Everestem przez South Col. Ściana Lhotse to jedna z największych ścian skalnych na świecie.",
+    "imageUrl": "file:///android_asset/images/17.jpeg",
+    "lat": 27.9626,
+    "lng": 86.9333
   },
   {
     "id": 18,
@@ -195,7 +246,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Piąty najwyższy szczyt świata, znany z piramidowego kształtu. Izolowana i wymagająca góra z trudnymi warunkami technicznymi. Mniej popularny niż inne ośmiotysięczniki."
+    "description": "Piąty najwyższy szczyt świata, znany z piramidowego kształtu. Izolowana i wymagająca góra z trudnymi warunkami technicznymi.",
+    "imageUrl": "file:///android_asset/images/18.jpeg",
+    "lat": 27.8897,
+    "lng": 87.0889
   },
   {
     "id": 19,
@@ -206,7 +260,10 @@
     "techReq": 3,
     "acclReq": 5,
     "riskReq": 3,
-    "description": "Szósty najwyższy szczyt świata, uważany za najłatwiejszy ośmiotysięcznik. Popularna góra treningowa przed wyprawą na Everest. Standardowa trasa prowadzi przez stronę tybetańską."
+    "description": "Szósty najwyższy szczyt świata, uważany za najłatwiejszy ośmiotysięcznik. Popularna góra treningowa przed wyprawą na Everest.",
+    "imageUrl": "file:///android_asset/images/19.jpeg",
+    "lat": 28.0942,
+    "lng": 86.6608
   },
   {
     "id": 20,
@@ -217,7 +274,10 @@
     "techReq": 4,
     "acclReq": 5,
     "riskReq": 4,
-    "description": "Ósmy najwyższy szczyt świata. Góra Ducha, jak ją nazywają lokalni – znana z lawin i nieprzewidywalnej pogody. Ostatnio popularny cel ekspedycji komercyjnych."
+    "description": "Ósmy najwyższy szczyt świata. Góra Ducha – znana z lawin i nieprzewidywalnej pogody. Popularny cel ekspedycji komercyjnych.",
+    "imageUrl": "file:///android_asset/images/20.jpeg",
+    "lat": 28.55,
+    "lng": 84.5667
   },
   {
     "id": 21,
@@ -228,7 +288,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Dziewiąty najwyższy szczyt świata, zwany Zabójczą Górą. Ściana Rupal to najwyższa ściana skalna na świecie (4600m). Historia zdobywania pełna jest tragedii i heroizmu."
+    "description": "Dziewiąty najwyższy szczyt świata, zwany Zabójczą Górą. Ściana Rupal to najwyższa ściana skalna na świecie (4600m).",
+    "imageUrl": "file:///android_asset/images/21.jpeg",
+    "lat": 35.2375,
+    "lng": 74.5892
   },
   {
     "id": 22,
@@ -239,7 +302,10 @@
     "techReq": 5,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Dziesiąty najwyższy szczyt świata, pierwszy zdobyty ośmiotysięcznik (1950). Najwyższy wskaźnik śmiertelności wśród ośmiotysięczników. Potężne lawiny i strome ściany czynią ją ekstremalnie niebezpieczną."
+    "description": "Dziesiąty najwyższy szczyt, pierwszy zdobyty ośmiotysięcznik (1950). Najwyższy wskaźnik śmiertelności wśród ośmiotysięczników.",
+    "imageUrl": "file:///android_asset/images/22.jpeg",
+    "lat": 28.5961,
+    "lng": 83.8203
   },
   {
     "id": 23,
@@ -250,7 +316,10 @@
     "techReq": 4,
     "acclReq": 5,
     "riskReq": 4,
-    "description": "Dwunasty najwyższy szczyt świata, położony blisko K2. Pierwszy ośmiotysięcznik zdobyty w stylu alpejskim (1957, austriacka wyprawa). Nazwa odnosi się do szerokiego, płaskiego szczytu."
+    "description": "Dwunasty najwyższy szczyt, położony blisko K2. Pierwszy ośmiotysięcznik zdobyty w stylu alpejskim (1957).",
+    "imageUrl": "file:///android_asset/images/23.jpeg",
+    "lat": 35.8117,
+    "lng": 76.565
   },
   {
     "id": 24,
@@ -261,7 +330,10 @@
     "techReq": 3,
     "acclReq": 5,
     "riskReq": 3,
-    "description": "Trzynasty najwyższy szczyt świata. Uważany za jeden z łatwiejszych ośmiotysięczników. Popularna góra treningowa przed K2. Piękna piramida lodowa widoczna z bazy K2."
+    "description": "Trzynasty najwyższy szczyt, uważany za jeden z łatwiejszych ośmiotysięczników. Popularna góra treningowa przed K2.",
+    "imageUrl": "file:///android_asset/images/24.jpeg",
+    "lat": 35.7583,
+    "lng": 76.6533
   },
   {
     "id": 25,
@@ -272,7 +344,10 @@
     "techReq": 4,
     "acclReq": 5,
     "riskReq": 5,
-    "description": "Siódmy najwyższy szczyt świata. Biała Góra – imponujący, izolowany masyw. Trasa normalna wymaga przejścia niebezpiecznych lodowców i ostrych grzbietów wśród potężnych lawin."
+    "description": "Siódmy najwyższy szczyt świata. Biała Góra – imponujący, izolowany masyw znany z potężnych lawin.",
+    "imageUrl": "file:///android_asset/images/25.jpeg",
+    "lat": 28.6983,
+    "lng": 83.4875
   },
   {
     "id": 26,
@@ -283,7 +358,10 @@
     "techReq": 2,
     "acclReq": 1,
     "riskReq": 1,
-    "description": "Najwyższy szczyt Niemiec. Dostępny kolejką linową lub szlakiem z via ferratą przez Höllental. Panoramiczne widoki na 4 kraje. Świetny cel na pierwszą alpejską przygodę."
+    "description": "Najwyższy szczyt Niemiec. Dostępny kolejką linową lub szlakiem z via ferratą. Panoramiczne widoki na 4 kraje.",
+    "imageUrl": "file:///android_asset/images/26.jpg",
+    "lat": 47.4211,
+    "lng": 10.9853
   },
   {
     "id": 27,
@@ -294,7 +372,10 @@
     "techReq": 2,
     "acclReq": 1,
     "riskReq": 2,
-    "description": "Siedziba bogów greckich. Szczyt Mytikas (2917m) wymaga lekkiej wspinaczki skalnej. Szlak z Prionia przez schronisko Spilios Agapitos. Magiczne miejsce łączące historię z górami."
+    "description": "Siedziba bogów greckich. Szczyt Mytikas wymaga lekkiej wspinaczki skalnej. Magiczne miejsce łączące historię z górami.",
+    "imageUrl": "file:///android_asset/images/27.jpeg",
+    "lat": 40.0806,
+    "lng": 22.3586
   },
   {
     "id": 28,
@@ -305,7 +386,10 @@
     "techReq": 1,
     "acclReq": 1,
     "riskReq": 1,
-    "description": "Najwyższy szczyt Hiszpanii i najwyższy wulkan na Atlantyku. Łatwa wspinaczka z kolejką linową lub szlakiem pieszym (wymaga pozwolenia). Surowy, księżycowy krajobraz."
+    "description": "Najwyższy szczyt Hiszpanii i najwyższy wulkan na Atlantyku. Łatwa wspinaczka. Surowy, księżycowy krajobraz.",
+    "imageUrl": "file:///android_asset/images/28.jpeg",
+    "lat": 28.2723,
+    "lng": -16.6425
   },
   {
     "id": 29,
@@ -316,7 +400,10 @@
     "techReq": 1,
     "acclReq": 1,
     "riskReq": 1,
-    "description": "Królowa Beskidów i najwyższy szczyt Beskidów Zachodnich. Znana z kapryśnej pogody i pięknych widoków. Szlak przez Przełęcz Krowiarki jest klasyczną trasą. Park Narodowy z cennymi lasami bukowymi."
+    "description": "Królowa Beskidów. Znana z kapryśnej pogody i pięknych widoków. Park Narodowy z cennymi lasami bukowymi.",
+    "imageUrl": "file:///android_asset/images/29.jpeg",
+    "lat": 49.5731,
+    "lng": 19.5292
   },
   {
     "id": 30,
@@ -327,6 +414,219 @@
     "techReq": 2,
     "acclReq": 1,
     "riskReq": 2,
-    "description": "Jedyny czterotysięcznik w całości na terytorium Włoch. Klasyczna alpejska wspinaczka lodowa, idealna jako wprowadzenie do wysokogórskiej alpinistyki. Piękny park narodowy u podnóża."
+    "description": "Jedyny czterotysięcznik w całości na terytorium Włoch. Klasyczna alpejska wspinaczka lodowa, idealna jako wprowadzenie do alpinistyki.",
+    "imageUrl": "file:///android_asset/images/30.jpeg",
+    "lat": 45.5186,
+    "lng": 7.2661
+  },
+  {
+    "id": 31,
+    "name": "Fuji",
+    "height": 3776,
+    "region": "Honsiu, Japonia",
+    "condReq": 2,
+    "techReq": 1,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Japonii i święta góra shintoizmu. Symetryczny stożek wulkaniczny, jeden z najbardziej rozpoznawalnych szczytów świata. Sezon wspinaczkowy trwa od lipca do września.",
+    "imageUrl": "file:///android_asset/images/31.jpeg",
+    "lat": 35.3606,
+    "lng": 138.7274
+  },
+  {
+    "id": 32,
+    "name": "Ama Dablam",
+    "height": 6812,
+    "region": "Himalaje, Nepal",
+    "condReq": 4,
+    "techReq": 5,
+    "acclReq": 4,
+    "riskReq": 4,
+    "description": "Matterhorn Himalajów – jedna z najpiękniejszych gór świata. Technicznie wymagająca wspinaczka na strome granie lodowe. Ikoniczny widok z trekkingu do bazy Everestu.",
+    "imageUrl": "file:///android_asset/images/32.jpeg",
+    "lat": 27.8611,
+    "lng": 86.8611
+  },
+  {
+    "id": 33,
+    "name": "Eiger",
+    "height": 3967,
+    "region": "Alpy Berneńskie, Szwajcaria",
+    "condReq": 4,
+    "techReq": 5,
+    "acclReq": 1,
+    "riskReq": 5,
+    "description": "Słynna North Face – Nordwand – jedna z najtrudniejszych ścian alpejskich. Historia zdobywania pełna jest dramatycznych prób. Ściana północna ma 1800m wysokości.",
+    "imageUrl": "file:///android_asset/images/33.jpeg",
+    "lat": 46.5775,
+    "lng": 8.0053
+  },
+  {
+    "id": 34,
+    "name": "Huayna Potosí",
+    "height": 6088,
+    "region": "Boliwia",
+    "condReq": 3,
+    "techReq": 2,
+    "acclReq": 4,
+    "riskReq": 2,
+    "description": "Jeden z najłatwiej dostępnych sześciotysięczników na świecie. Popularna góra treningowa w Boliwii, doskonała do nauki wspinaczki lodowej na dużych wysokościach.",
+    "imageUrl": "file:///android_asset/images/34.jpeg",
+    "lat": -16.2625,
+    "lng": -68.15
+  },
+  {
+    "id": 35,
+    "name": "Toubkal",
+    "height": 4167,
+    "region": "Atlas, Maroko",
+    "condReq": 2,
+    "techReq": 1,
+    "acclReq": 2,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Afryki Północnej i gór Atlas. Stosunkowo łatwa wspinaczka trekkingowa z przepięknymi widokami na pustynię Sahara w oddali.",
+    "imageUrl": "file:///android_asset/images/35.jpeg",
+    "lat": 31.06,
+    "lng": -7.9156
+  },
+  {
+    "id": 36,
+    "name": "Mount Rainier",
+    "height": 4392,
+    "region": "Kaskady, USA",
+    "condReq": 3,
+    "techReq": 3,
+    "acclReq": 2,
+    "riskReq": 3,
+    "description": "Najbardziej oblodzony wulkan w kontynentalnych Stanach Zjednoczonych. Klasyczna wspinaczka przez Disappointment Cleaver to popularne wprowadzenie do alpinizmu w USA.",
+    "imageUrl": "file:///android_asset/images/36.jpeg",
+    "lat": 46.8523,
+    "lng": -121.7603
+  },
+  {
+    "id": 37,
+    "name": "Ben Nevis",
+    "height": 1345,
+    "region": "Szkocja, UK",
+    "condReq": 1,
+    "techReq": 1,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Wysp Brytyjskich. Szlak turystyczny Mountain Track jest prosty, ale zimą Ben Nevis oferuje poważne wspinaczki lodowe na północnej ścianie.",
+    "imageUrl": "file:///android_asset/images/37.jpeg",
+    "lat": 56.7969,
+    "lng": -5.0036
+  },
+  {
+    "id": 38,
+    "name": "Pico de Orizaba",
+    "height": 5636,
+    "region": "Meksyk",
+    "condReq": 3,
+    "techReq": 2,
+    "acclReq": 3,
+    "riskReq": 2,
+    "description": "Najwyższy szczyt Meksyku i trzeci w Ameryce Północnej. Śpiący wulkan z lodowcami. Popularna góra do nauki wspinaczki na dużych wysokościach.",
+    "imageUrl": "file:///android_asset/images/38.jpeg",
+    "lat": 19.03,
+    "lng": -97.2694
+  },
+  {
+    "id": 39,
+    "name": "Cerro Torre",
+    "height": 3128,
+    "region": "Patagonia, Argentyna/Chile",
+    "condReq": 4,
+    "techReq": 5,
+    "acclReq": 1,
+    "riskReq": 5,
+    "description": "Jedna z najtrudniejszych technicznie gór świata. Igiełkowata wieża granitowa z osadzonym lodem na szczycie. Legendarny cel dla najlepszych wspinaczy skalnych.",
+    "imageUrl": "file:///android_asset/images/39.jpeg",
+    "lat": -49.3094,
+    "lng": -73.0975
+  },
+  {
+    "id": 40,
+    "name": "Fitz Roy",
+    "height": 3405,
+    "region": "Patagonia, Argentyna/Chile",
+    "condReq": 4,
+    "techReq": 5,
+    "acclReq": 1,
+    "riskReq": 4,
+    "description": "Ikona Patagonii, logo marki The North Face. Granitowe iglice i nieprzewidywalna pogoda czynią ją jednym z najbardziej wymagających celów wspinaczkowych.",
+    "imageUrl": "file:///android_asset/images/40.jpeg",
+    "lat": -49.2711,
+    "lng": -73.0433
+  },
+  {
+    "id": 41,
+    "name": "Giewont",
+    "height": 1895,
+    "region": "Tatry, Polska",
+    "condReq": 2,
+    "techReq": 2,
+    "acclReq": 1,
+    "riskReq": 2,
+    "description": "Śpiący Rycerz Tatr. Charakterystyczny profil widoczny z Zakopanego. Na szczycie metalowy krzyż z 1901 roku. Popularna, ale wymagająca wycieczka z łańcuchami na szczycie.",
+    "imageUrl": "file:///android_asset/images/41.jpeg",
+    "lat": 49.2514,
+    "lng": 19.9344
+  },
+  {
+    "id": 42,
+    "name": "Musala",
+    "height": 2925,
+    "region": "Riła, Bułgaria",
+    "condReq": 2,
+    "techReq": 1,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Bałkanów. Łatwy szlak turystyczny z piękną panoramą. Nazwa oznacza 'blisko Boga' po arabsku.",
+    "imageUrl": "file:///android_asset/images/42.jpeg",
+    "lat": 42.1792,
+    "lng": 23.585
+  },
+  {
+    "id": 43,
+    "name": "Mount Kosciuszko",
+    "height": 2228,
+    "region": "Nowa Południowa Walia, Australia",
+    "condReq": 1,
+    "techReq": 1,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Australii, nazwany na cześć Tadeusza Kościuszki. Łatwa wycieczka po dobrze utrzymanym szlaku. Jedna z najprostszych gór z Korony Ziemi.",
+    "imageUrl": "file:///android_asset/images/43.jpeg",
+    "lat": -36.4558,
+    "lng": 148.2636
+  },
+  {
+    "id": 44,
+    "name": "Mulhacén",
+    "height": 3479,
+    "region": "Sierra Nevada, Hiszpania",
+    "condReq": 2,
+    "techReq": 1,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Półwyspu Iberyjskiego i kontynentalnej Hiszpanii. Łatwo dostępny szlakiem trekkingowym z pięknym widokiem na Morze Śródziemne i Afrykę.",
+    "imageUrl": "file:///android_asset/images/44.jpeg",
+    "lat": 37.0531,
+    "lng": -3.3114
+  },
+  {
+    "id": 45,
+    "name": "Corno Grande",
+    "height": 2912,
+    "region": "Apeniny, Włochy",
+    "condReq": 2,
+    "techReq": 2,
+    "acclReq": 1,
+    "riskReq": 1,
+    "description": "Najwyższy szczyt Apeninów. Masyw Gran Sasso d'Italia oferuje znakomite wspinaczki skalne i lodowe. Jedyny lodowiec w Apeninach – Calderone.",
+    "imageUrl": "file:///android_asset/images/45.jpeg",
+    "lat": 42.4706,
+    "lng": 13.5653
   }
 ]

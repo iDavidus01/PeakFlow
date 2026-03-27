@@ -25,11 +25,18 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this, ProfileViewModelFactory(repo))[ProfileViewModel::class.java]
 
         viewModel.userStats.observe(viewLifecycleOwner) { stats ->
-            binding.tvCondValue.text = stats.condition.toString()
-            binding.tvTechValue.text = stats.technique.toString()
-            binding.tvAcclValue.text = stats.acclimatization.toString()
-            binding.tvRiskValue.text = stats.risk.toString()
+            binding.tvCondValue.text = "${stats.condition}/5"
+            binding.tvTechValue.text = "${stats.technique}/5"
+            binding.tvAcclValue.text = "${stats.acclimatization}/5"
+            binding.tvRiskValue.text = "${stats.risk}/5"
             binding.tvTotalXp.text = stats.totalXp.toString()
+
+            binding.radarChart.setStats(
+                stats.condition,
+                stats.technique,
+                stats.acclimatization,
+                stats.risk
+            )
         }
 
         viewModel.conqueredCount.observe(viewLifecycleOwner) { count ->

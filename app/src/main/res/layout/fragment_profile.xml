@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
@@ -37,7 +38,6 @@
             android:orientation="horizontal"
             android:layout_marginBottom="20dp">
 
-            <!-- Conquered Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,16 +45,13 @@
                 android:layout_marginEnd="6dp"
                 app:cardBackgroundColor="@color/surface_dark"
                 app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
-
+                app:strokeWidth="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center">
-
                     <TextView
                         android:id="@+id/tv_conquered_count"
                         android:layout_width="wrap_content"
@@ -63,7 +60,6 @@
                         android:textColor="@color/conquered_green"
                         android:textSize="36sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -71,12 +67,9 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Total Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -85,16 +78,13 @@
                 android:layout_marginEnd="6dp"
                 app:cardBackgroundColor="@color/surface_dark"
                 app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
-
+                app:strokeWidth="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center">
-
                     <TextView
                         android:id="@+id/tv_total_mountains"
                         android:layout_width="wrap_content"
@@ -103,7 +93,6 @@
                         android:textColor="@color/accent_blue"
                         android:textSize="36sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -111,12 +100,9 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Total XP Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -124,16 +110,13 @@
                 android:layout_marginStart="6dp"
                 app:cardBackgroundColor="@color/surface_dark"
                 app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
-
+                app:strokeWidth="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center">
-
                     <TextView
                         android:id="@+id/tv_total_xp"
                         android:layout_width="wrap_content"
@@ -142,7 +125,6 @@
                         android:textColor="@color/accent_orange"
                         android:textSize="36sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -150,14 +132,11 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
 
-        <!-- Stats Title -->
+        <!-- Radar Chart -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -165,38 +144,49 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="4dp" />
 
-        <!-- Condition Stat -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/surface_dark"
+            app:cardCornerRadius="16dp"
+            app:strokeWidth="0dp">
+
+            <com.example.peakflow.ui.profile.RadarChartView
+                android:id="@+id/radar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:padding="8dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Stat Detail Cards -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
-            app:strokeWidth="0dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-
+            app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
-
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_condition"
                     app:tint="@color/accent_orange" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginStart="12dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -204,59 +194,48 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stat_condition_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
-
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_cond_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="0/5"
                     android:textColor="@color/accent_orange"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Technique Stat -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
-            app:strokeWidth="0dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-
+            app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
-
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_technique"
                     app:tint="@color/accent_blue" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginStart="12dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -264,59 +243,48 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stat_technique_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
-
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_tech_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="0/5"
                     android:textColor="@color/accent_blue"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Acclimatization Stat -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
-            app:strokeWidth="0dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-
+            app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
-
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_acclimatization"
                     app:tint="@color/accent_purple" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginStart="12dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -324,59 +292,48 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stat_acclimatization_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
-
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_accl_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="0/5"
                     android:textColor="@color/accent_purple"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Risk Stat -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
-            app:strokeWidth="0dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
-
+            app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
-
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_risk"
                     app:tint="@color/accent_red" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginStart="12dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -384,29 +341,23 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/stat_risk_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
-
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_risk_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="0/5"
                     android:textColor="@color/accent_red"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-
 </ScrollView>

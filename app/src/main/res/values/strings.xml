@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Peak Flow</string>
-    <string name="title_home">Góry</string>
-    <string name="title_profile">Profil</string>
+    <string name="title_home">Home</string>
+    <string name="title_path">Droga</string>
+    <string name="title_mountains">Góry</string>
+    <string name="title_map">Mapa</string>
     <string name="home_subtitle">Odkrywaj szczyty i buduj swoje doświadczenie</string>
     <string name="search_hint">Szukaj gór…</string>
 
@@ -21,11 +23,16 @@
     <string name="stat_acclimatization_desc">Przystosowanie do wysokości</string>
     <string name="stat_risk_desc">Odporność na zagrożenia</string>
 
-    <!-- Profile -->
+    <!-- Profile / Home -->
     <string name="profile_title">Twój Profil</string>
     <string name="profile_subtitle">Twój progres wspinaczkowy</string>
     <string name="conquered_label">Zdobyte</string>
     <string name="total_label">Wszystkie</string>
     <string name="xp_label">Łączne XP</string>
     <string name="stats_title">Twoje Statystyki</string>
+
+    <!-- Path / Droga -->
+    <string name="path_title">Twoja Droga</string>
+    <string name="path_subtitle">Od najłatwiejszej do najtrudniejszej</string>
+    <string name="next_target">▶ NASTĘPNY CEL</string>
 </resources>

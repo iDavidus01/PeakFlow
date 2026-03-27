@@ -5,10 +5,34 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
+    <!-- Home = Profile / Stats (default) -->
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.peakflow.ui.home.HomeFragment"
+        android:name="com.example.peakflow.ui.profile.ProfileFragment"
         android:label="@string/title_home"
+        tools:layout="@layout/fragment_profile" />
+
+    <!-- Path = Droga -->
+    <fragment
+        android:id="@+id/navigation_path"
+        android:name="com.example.peakflow.ui.path.PathFragment"
+        android:label="@string/title_path"
+        tools:layout="@layout/fragment_path">
+
+        <action
+            android:id="@+id/action_path_to_detail"
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <!-- Mountains list -->
+    <fragment
+        android:id="@+id/navigation_mountains"
+        android:name="com.example.peakflow.ui.home.HomeFragment"
+        android:label="@string/title_mountains"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -20,6 +44,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
+    <!-- Detail -->
     <fragment
         android:id="@+id/navigation_detail"
         android:name="com.example.peakflow.ui.detail.DetailFragment"
@@ -32,9 +57,18 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.peakflow.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/navigation_map"
+        android:name="com.example.peakflow.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map">
+
+        <action
+            android:id="@+id/action_map_to_detail"
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
 </navigation>

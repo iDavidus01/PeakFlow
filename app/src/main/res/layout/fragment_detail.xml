@@ -9,231 +9,258 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
-        <!-- Mountain Name -->
-        <TextView
-            android:id="@+id/tv_detail_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-medium" />
-
-        <!-- Height & Region -->
-        <TextView
-            android:id="@+id/tv_detail_height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/accent_orange"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            android:id="@+id/tv_detail_region"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            android:layout_marginTop="2dp" />
-
-        <!-- Divider -->
-        <View
+        <!-- Hero Image with Back Button -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider_dark"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="wrap_content">
 
-        <!-- Description -->
-        <TextView
-            android:id="@+id/tv_detail_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
-            android:textSize="15sp"
-            android:lineSpacingMultiplier="1.4" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeWidth="0dp">
 
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider_dark"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+                <ImageView
+                    android:id="@+id/iv_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/mountain_placeholder" />
 
-        <!-- Requirements Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/requirements_title"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
+            </com.google.android.material.card.MaterialCardView>
 
-        <!-- Condition -->
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/circle_button_bg"
+                android:src="@drawable/ic_arrow_back"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                android:elevation="8dp"
+                android:contentDescription="Wróć"
+                app:tint="@color/white" />
+
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
 
+            <!-- Mountain Name -->
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_detail_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/stat_condition"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <ProgressBar
-                android:id="@+id/progress_cond"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_weight="2"
-                android:max="5"
-                android:progressDrawable="@drawable/progress_bar_orange"
-                android:layout_marginEnd="12dp" />
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
-                android:id="@+id/tv_cond_value"
-                android:layout_width="24dp"
+                android:id="@+id/tv_detail_height"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/accent_orange"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Technique -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+                android:layout_marginTop="4dp" />
 
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_detail_region"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/stat_technique"
                 android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
 
-            <ProgressBar
-                android:id="@+id/progress_tech"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_weight="2"
-                android:max="5"
-                android:progressDrawable="@drawable/progress_bar_blue"
-                android:layout_marginEnd="12dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_dark"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
             <TextView
-                android:id="@+id/tv_tech_value"
-                android:layout_width="24dp"
+                android:id="@+id/tv_detail_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/accent_blue"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.4" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_dark"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/requirements_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Condition -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/stat_condition"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+                <ProgressBar
+                    android:id="@+id/progress_cond"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_weight="2"
+                    android:max="5"
+                    android:progressDrawable="@drawable/progress_bar_orange"
+                    android:layout_marginEnd="12dp" />
+                <TextView
+                    android:id="@+id/tv_cond_value"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/accent_orange"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Technique -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/stat_technique"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+                <ProgressBar
+                    android:id="@+id/progress_tech"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_weight="2"
+                    android:max="5"
+                    android:progressDrawable="@drawable/progress_bar_blue"
+                    android:layout_marginEnd="12dp" />
+                <TextView
+                    android:id="@+id/tv_tech_value"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Acclimatization -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/stat_acclimatization"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+                <ProgressBar
+                    android:id="@+id/progress_accl"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_weight="2"
+                    android:max="5"
+                    android:progressDrawable="@drawable/progress_bar_purple"
+                    android:layout_marginEnd="12dp" />
+                <TextView
+                    android:id="@+id/tv_accl_value"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/accent_purple"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Risk -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/stat_risk"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+                <ProgressBar
+                    android:id="@+id/progress_risk"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_weight="2"
+                    android:max="5"
+                    android:progressDrawable="@drawable/progress_bar_red"
+                    android:layout_marginEnd="12dp" />
+                <TextView
+                    android:id="@+id/tv_risk_value"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/accent_red"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_conquer"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="@string/mark_conquered"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:gravity="center" />
+                android:textColor="@color/white"
+                app:icon="@drawable/ic_flag"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white"
+                app:cornerRadius="16dp"
+                android:layout_marginTop="8dp" />
+
         </LinearLayout>
-
-        <!-- Acclimatization -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/stat_acclimatization"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <ProgressBar
-                android:id="@+id/progress_accl"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_weight="2"
-                android:max="5"
-                android:progressDrawable="@drawable/progress_bar_purple"
-                android:layout_marginEnd="12dp" />
-
-            <TextView
-                android:id="@+id/tv_accl_value"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/accent_purple"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Risk -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/stat_risk"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <ProgressBar
-                android:id="@+id/progress_risk"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_weight="2"
-                android:max="5"
-                android:progressDrawable="@drawable/progress_bar_red"
-                android:layout_marginEnd="12dp" />
-
-            <TextView
-                android:id="@+id/tv_risk_value"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/accent_red"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Conquer Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_conquer"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="@string/mark_conquered"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:icon="@drawable/ic_flag"
-            app:iconGravity="textStart"
-            app:iconTint="@color/white"
-            app:cornerRadius="16dp"
-            android:layout_marginTop="8dp" />
-
     </LinearLayout>
-
 </ScrollView>

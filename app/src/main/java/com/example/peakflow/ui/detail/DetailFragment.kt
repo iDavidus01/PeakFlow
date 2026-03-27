@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.peakflow.R
 import com.example.peakflow.data.MountainRepository
 import com.example.peakflow.databinding.FragmentDetailBinding
@@ -43,6 +45,13 @@ class DetailFragment : Fragment() {
             binding.progressTech.progress = m.techReq
             binding.progressAccl.progress = m.acclReq
             binding.progressRisk.progress = m.riskReq
+
+            // Load hero image
+            binding.ivDetailImage.load(m.imageUrl) {
+                crossfade(300)
+                placeholder(R.drawable.mountain_placeholder)
+                error(R.drawable.mountain_placeholder)
+            }
         }
 
         viewModel.isConquered.observe(viewLifecycleOwner) { conquered ->
@@ -63,6 +72,10 @@ class DetailFragment : Fragment() {
 
         binding.btnConquer.setOnClickListener {
             viewModel.toggleConquered()
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         return binding.root

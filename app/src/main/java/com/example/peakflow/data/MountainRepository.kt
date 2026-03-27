@@ -44,7 +44,10 @@ class MountainRepository private constructor(context: Context) {
                     techReq = obj.getInt("techReq"),
                     acclReq = obj.getInt("acclReq"),
                     riskReq = obj.getInt("riskReq"),
-                    description = obj.getString("description")
+                    description = obj.getString("description"),
+                    imageUrl = obj.optString("imageUrl", ""),
+                    lat = obj.optDouble("lat", 0.0),
+                    lng = obj.optDouble("lng", 0.0)
                 )
             )
         }
@@ -85,13 +88,17 @@ class MountainRepository private constructor(context: Context) {
     private fun recalculateStats() {
         val conquered = _conqueredIds.value ?: emptySet()
         val allMountains = _mountains.value ?: emptyList()
-        val stats = UserStats()
-        allMountains.filter { it.id in conquered }.forEach { m ->
-            stats.condition += m.condReq
-            stats.technique += m.techReq
-            stats.acclimatization += m.acclReq
-            stats.risk += m.riskReq
-        }
+        val conqueredMountains = allMountains.filter { it.id in conquered }
+
+        val stats = UserStats(
+            // Individual stats = MAX from any conquered mountain
+            condition = conqueredMountains.maxOfOrNull { it.condReq } ?: 0,
+            technique = conqueredMountains.maxOfOrNull { it.techReq } ?: 0,
+            acclimatization = conqueredMountains.maxOfOrNull { it.acclReq } ?: 0,
+            risk = conqueredMountains.maxOfOrNull { it.riskReq } ?: 0,
+            // Total XP = sum of all requirements from all conquered mountains
+            totalXp = conqueredMountains.sumOf { it.totalDifficulty }
+        )
         _userStats.value = stats
     }
 
