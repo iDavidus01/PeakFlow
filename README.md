@@ -38,7 +38,7 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/PeakFlow.git
+    git clone https://github.com/iDavidus01/PeakFlow.git
     ```
 2.  **Open in Android Studio:**
     Select `File > Open`, then locate the cloned `PeakFlow` directory.
