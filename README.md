@@ -32,7 +32,7 @@
 *   **UI Components**: XML Layouts, Material Design 3, Auto-loading Recycler Views
 *   **Navigation**: Android Jetpack Navigation Component
 *   **Image Loading**: [Coil](https://coil-kt.github.io/coil/)
-*   **Map API**: [Osmdroid](https://github.com/osmdroid/osmdroid) (No Google Maps API Key required)
+*   **Map API**: [Osmdroid](https://github.com/osmdroid/osmdroid) 
 
 ## 💻 Installation
 
@@ -50,4 +50,4 @@
 
 ## 🤝 Contribution
 
-Feel free to open issues or submit pull requests if you want to add new mountains to `mountains.json`, improve the UI, or add multiple languages!
+Feel free to open issues or submit pull requests if you want to add new mountains to `mountains.json`, improve the UI, or add multiple languages.
