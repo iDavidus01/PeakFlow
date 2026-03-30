@@ -22,12 +22,19 @@
         android:orientation="horizontal">
 
         <!-- Thumbnail -->
-        <ImageView
-            android:id="@+id/iv_mountain_thumb"
+        <FrameLayout
             android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/mountain_placeholder" />
+            android:layout_height="match_parent"
+            android:minHeight="90dp">
+            
+            <ImageView
+                android:id="@+id/iv_mountain_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/mountain_placeholder" />
+
+        </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -81,6 +88,18 @@
                 android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_mountain_height" />
+
+            <TextView
+                android:id="@+id/tv_recommended_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#FF9800"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_mountain_region" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

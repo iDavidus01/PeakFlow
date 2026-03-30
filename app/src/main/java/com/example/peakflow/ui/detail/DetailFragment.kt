@@ -52,6 +52,11 @@ class DetailFragment : Fragment() {
                 placeholder(R.drawable.mountain_placeholder)
                 error(R.drawable.mountain_placeholder)
             }
+            updateReadiness()
+        }
+
+        viewModel.userStats.observe(viewLifecycleOwner) {
+            updateReadiness()
         }
 
         viewModel.isConquered.observe(viewLifecycleOwner) { conquered ->
@@ -70,6 +75,26 @@ class DetailFragment : Fragment() {
             }
         }
 
+        viewModel.weather.observe(viewLifecycleOwner) { weatherState ->
+            if (weatherState != null) {
+                binding.cardWeather.visibility = View.VISIBLE
+                binding.tvWeatherTemp.text = "${weatherState.temp}°C"
+                binding.tvWeatherWind.text = "${weatherState.wind} km/h"
+                binding.tvWeatherStatus.text = weatherState.conditionText
+                binding.tvWeatherStatus.setTextColor(android.graphics.Color.parseColor(weatherState.conditionColor))
+                binding.tvWeatherDesc.text = weatherState.desc
+                
+                // Extra icons based on state if desired, e.g. adding snow icon near temp
+                if (weatherState.isSnowing) {
+                    binding.tvWeatherDesc.text = weatherState.desc + " (Pada śnieg 🌨️)"
+                } else if (weatherState.isSunny) {
+                    binding.tvWeatherDesc.text = weatherState.desc + " (Czyste niebo ☀️)"
+                }
+            } else {
+                binding.cardWeather.visibility = View.GONE
+            }
+        }
+
         binding.btnConquer.setOnClickListener {
             viewModel.toggleConquered()
         }
@@ -79,6 +104,37 @@ class DetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun updateReadiness() {
+        val m = viewModel.mountain.value ?: return
+        val stats = viewModel.userStats.value ?: return
+
+        val missingPts = maxOf(0, m.condReq - stats.condition) +
+                maxOf(0, m.techReq - stats.technique) +
+                maxOf(0, m.acclReq - stats.acclimatization) +
+                maxOf(0, m.riskReq - stats.risk)
+
+        // Using formula: 1 missing point = -15%
+        // So 0 misses = 100%, 1 miss = 85%, 2 misses = 70%, 3 = 55%, 4 = 40%
+        val readinessScore = maxOf(0, 100 - (missingPts * 15))
+
+        binding.tvReadinessPercent.text = "$readinessScore%"
+        
+        when {
+            readinessScore >= 80 -> {
+                binding.tvReadinessStatus.text = "Gotowy"
+                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#4CAF50")) // Green
+            }
+            readinessScore >= 50 -> {
+                binding.tvReadinessStatus.text = "Ryzykowne"
+                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#FF9800")) // Orange
+            }
+            else -> {
+                binding.tvReadinessStatus.text = "Zapomnij"
+                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#F44336")) // Red
+            }
+        }
     }
 
     override fun onDestroyView() {

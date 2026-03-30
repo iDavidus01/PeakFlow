@@ -30,6 +30,10 @@ class ProfileFragment : Fragment() {
             binding.tvAcclValue.text = "${stats.acclimatization}/5"
             binding.tvRiskValue.text = "${stats.risk}/5"
             binding.tvTotalXp.text = stats.totalXp.toString()
+            
+            binding.tvProfileLevel.text = stats.level.toString()
+            binding.tvProfileXpProgress.text = "${stats.totalXp} / ${stats.maxLevelXp}"
+            binding.progressLevel.progress = (stats.progressToNextLevel * 100).toInt()
 
             binding.radarChart.setStats(
                 stats.condition,

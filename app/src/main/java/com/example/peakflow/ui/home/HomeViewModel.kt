@@ -11,8 +11,26 @@ class HomeViewModel(private val repository: MountainRepository) : ViewModel() {
 
     val mountains: LiveData<List<Mountain>> = repository.mountains
     val conqueredIds: LiveData<Set<Int>> = repository.conqueredIds
+    val userStats = repository.userStats
 
     private val _searchQuery = MutableLiveData("")
+
+    val nextGoal = MediatorLiveData<Mountain?>().apply {
+        addSource(mountains) { updateNextGoal() }
+        addSource(conqueredIds) { updateNextGoal() }
+        addSource(userStats) { updateNextGoal() }
+    }
+
+    private fun MediatorLiveData<Mountain?>.updateNextGoal() {
+        val all = mountains.value ?: return
+        val conquered = conqueredIds.value ?: return
+        val stats = userStats.value ?: return
+
+        val unconquered = all.filter { it.id !in conquered }.sortedBy { it.height }
+        
+        val possibleGoals = unconquered.filter { it.requiredLevel <= stats.level }
+        value = possibleGoals.lastOrNull() ?: unconquered.firstOrNull()
+    }
 
     val filteredMountains = MediatorLiveData<List<Mountain>>().apply {
         addSource(mountains) { updateFilter() }
