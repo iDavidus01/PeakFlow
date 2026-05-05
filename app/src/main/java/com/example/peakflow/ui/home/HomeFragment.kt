@@ -18,7 +18,6 @@ import com.example.peakflow.databinding.FragmentHomeBinding
 import com.example.peakflow.domain.SortOrder
 import com.example.peakflow.ui.animateClick
 import com.google.android.material.chip.Chip
-import android.view.ContextThemeWrapper
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
@@ -118,7 +117,7 @@ class HomeFragment : Fragment() {
             binding.chipGroupRegion.removeViewAt(1)
         }
         regions.forEach { region ->
-            val chip = Chip(ContextThemeWrapper(requireContext(), com.google.android.material.R.style.Widget_MaterialComponents_Chip_Filter)).apply {
+            val chip = Chip(requireContext()).apply {
                 text = region
                 isCheckable = true
                 tag = region
