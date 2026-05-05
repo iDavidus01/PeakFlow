@@ -5,9 +5,27 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.example.peakflow.data.MountainRepository
+import com.example.peakflow.ui.widget.PeakFlowWidget
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 
 class PeakFlowApplication : Application(), ImageLoaderFactory {
+
+    private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    override fun onCreate() {
+        super.onCreate()
+        appScope.launch {
+            MountainRepository.getInstance(this@PeakFlowApplication)
+                .conqueredIds
+                .collect { PeakFlowWidget.updateAll(this@PeakFlowApplication) }
+        }
+    }
+
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(this)
             .memoryCache {

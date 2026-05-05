@@ -6,84 +6,129 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.peakflow.R
 import com.example.peakflow.data.MountainRepository
 import com.example.peakflow.databinding.FragmentHomeBinding
+import com.example.peakflow.domain.SortOrder
+import com.example.peakflow.ui.animateClick
+import com.google.android.material.chip.Chip
+import android.view.ContextThemeWrapper
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeViewModel
-    private lateinit var adapter: MountainAdapter
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModelFactory(MountainRepository.getInstance(requireContext()))
+    }
+
+    private val adapter by lazy {
+        MountainAdapter { mountain ->
+            val bundle = Bundle().apply { putInt("mountainId", mountain.id) }
+            findNavController().navigate(R.id.action_home_to_detail, bundle)
+        }
+    }
+
+    private var regionsSetUp = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val repo = MountainRepository.getInstance(requireContext())
-        viewModel = ViewModelProvider(this, HomeViewModelFactory(repo))[HomeViewModel::class.java]
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        adapter = MountainAdapter { mountain ->
-            val bundle = Bundle().apply { putInt("mountainId", mountain.id) }
-            findNavController().navigate(R.id.action_home_to_detail, bundle)
-        }
-        
-        // Remove problematic line if it's not strictly necessary or causes issues
-        // adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-
-        binding.rvMountains.layoutManager = LinearLayoutManager(context)
-        binding.rvMountains.adapter = adapter
-
-        binding.etSearch.doAfterTextChanged {
-            viewModel.setSearchQuery(it.toString())
+        binding.rvMountains.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@HomeFragment.adapter
         }
 
-        viewModel.filteredMountains.observe(viewLifecycleOwner) {
-            updateList()
+        binding.etSearch.doAfterTextChanged { text ->
+            viewModel.setSearchQuery(text?.toString().orEmpty())
         }
 
-        viewModel.conqueredIds.observe(viewLifecycleOwner) {
-            updateList()
+        binding.chipGroupSort.setOnCheckedStateChangeListener { _, checkedIds ->
+            val order = when (checkedIds.firstOrNull()) {
+                R.id.chip_sort_height -> SortOrder.HEIGHT_DESC
+                R.id.chip_sort_difficulty -> SortOrder.DIFFICULTY_ASC
+                else -> SortOrder.DEFAULT
+            }
+            viewModel.setSortOrder(order)
         }
 
-        viewModel.userStats.observe(viewLifecycleOwner) {
-            updateList()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch { collectMountainList() }
+                launch { collectNextGoal() }
+                launch { collectRegions() }
+            }
         }
+    }
 
-        viewModel.nextGoal.observe(viewLifecycleOwner) { goal ->
+    private suspend fun collectMountainList() {
+        combine(
+            viewModel.filteredMountains,
+            viewModel.conqueredIds,
+            viewModel.userStats
+        ) { mountains, conquered, stats ->
+            mountains.map { MountainAdapter.MountainItem(it, it.id in conquered, stats.level) }
+        }.collect { items -> adapter.submitList(items) }
+    }
+
+    private suspend fun collectNextGoal() {
+        viewModel.nextGoal.collect { goal ->
             if (goal != null) {
                 binding.cardNextGoal.visibility = View.VISIBLE
                 binding.tvNextGoal.text = goal.name
-                binding.cardNextGoal.setOnClickListener { view ->
-                    view.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).withEndAction {
-                        view.animate().scaleX(1f).scaleY(1f).setDuration(100).withEndAction {
-                            val bundle = Bundle().apply { putInt("mountainId", goal.id) }
-                            findNavController().navigate(R.id.action_home_to_detail, bundle)
-                        }
+                binding.cardNextGoal.setOnClickListener { v ->
+                    v.animateClick {
+                        val bundle = Bundle().apply { putInt("mountainId", goal.id) }
+                        findNavController().navigate(R.id.action_home_to_detail, bundle)
                     }
                 }
             } else {
                 binding.cardNextGoal.visibility = View.GONE
             }
         }
-
-        return binding.root
     }
 
-    private fun updateList() {
-        val mountains = viewModel.filteredMountains.value.orEmpty()
-        val conquered = viewModel.conqueredIds.value.orEmpty()
-        val userLevel = viewModel.userStats.value?.level ?: 1
-        adapter.submitList(mountains.map {
-            MountainAdapter.MountainItem(it, it.id in conquered, userLevel)
-        })
+    private suspend fun collectRegions() {
+        viewModel.regions.collect { regions ->
+            if (!regionsSetUp && regions.isNotEmpty()) {
+                regionsSetUp = true
+                setupRegionChips(regions)
+            }
+        }
+    }
+
+    private fun setupRegionChips(regions: List<String>) {
+        while (binding.chipGroupRegion.childCount > 1) {
+            binding.chipGroupRegion.removeViewAt(1)
+        }
+        regions.forEach { region ->
+            val chip = Chip(ContextThemeWrapper(requireContext(), com.google.android.material.R.style.Widget_MaterialComponents_Chip_Filter)).apply {
+                text = region
+                isCheckable = true
+                tag = region
+            }
+            binding.chipGroupRegion.addView(chip)
+        }
+        binding.chipGroupRegion.setOnCheckedStateChangeListener { group, checkedIds ->
+            val selected = checkedIds.firstOrNull()?.let { id -> group.findViewById<Chip>(id) }
+            viewModel.setRegionFilter(selected?.tag as? String)
+        }
     }
 
     override fun onDestroyView() {

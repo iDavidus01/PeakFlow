@@ -7,12 +7,10 @@
     <string name="home_subtitle">Odkrywaj szczyty i buduj swoje doświadczenie</string>
     <string name="search_hint">Szukaj gór…</string>
 
-    <!-- Detail -->
     <string name="requirements_title">Wymagania</string>
     <string name="mark_conquered">Oznacz jako zdobyta</string>
     <string name="conquered">Zdobyta ✓</string>
 
-    <!-- Stats -->
     <string name="stat_condition">Kondycja</string>
     <string name="stat_technique">Technika</string>
     <string name="stat_acclimatization">Aklimatyzacja</string>
@@ -23,7 +21,6 @@
     <string name="stat_acclimatization_desc">Przystosowanie do wysokości</string>
     <string name="stat_risk_desc">Odporność na zagrożenia</string>
 
-    <!-- Profile / Home -->
     <string name="profile_title">Twój Profil</string>
     <string name="profile_subtitle">Twój progres wspinaczkowy</string>
     <string name="conquered_label">Zdobyte</string>
@@ -31,8 +28,67 @@
     <string name="xp_label">Łączne XP</string>
     <string name="stats_title">Twoje Statystyki</string>
 
-    <!-- Path / Droga -->
     <string name="path_title">Twoja Droga</string>
     <string name="path_subtitle">Od najłatwiejszej do najtrudniejszej</string>
     <string name="next_target">▶ NASTĘPNY CEL</string>
+
+    <string name="readiness_ready">Gotowy</string>
+    <string name="readiness_risky">Ryzykowne</string>
+    <string name="readiness_forget">Zapomnij</string>
+    <string name="recommended_level">Zalecany Lvl %d</string>
+
+    <string name="weather_acceptable">Akceptowalne warunki</string>
+    <string name="weather_dangerous">Warunki NIEBEZPIECZNE</string>
+    <string name="weather_ideal">Idealne okno wejścia</string>
+    <string name="weather_winter">Ciężkie warunki zimowe</string>
+    <string name="weather_desc_acceptable">Możesz spróbować wejścia, ale uważaj na zmiany pogody.</string>
+    <string name="weather_desc_dangerous">Silny wiatr, burze lub ekstremalne mrozy. Stanowczo odradzamy.</string>
+    <string name="weather_desc_ideal">Wymarzona pogoda na atak szczytowy!</string>
+    <string name="weather_desc_winter">Ujemna temperatura i opady. Wymagany pełen sprzęt zimowy.</string>
+    <string name="weather_snowing_suffix"> (Pada śnieg)</string>
+    <string name="weather_sunny_suffix"> (Czyste niebo)</string>
+
+    <string name="sort_default">Domyślnie</string>
+    <string name="sort_height">Wysokość ↓</string>
+    <string name="sort_difficulty">Trudność ↑</string>
+    <string name="filter_all_regions">Wszystkie</string>
+
+    <string name="logbook_title">Kronika Wspinaczek</string>
+    <string name="logbook_empty">Nie zdobyłeś jeszcze żadnej góry</string>
+    <string name="logbook_date_unknown">Data nieznana</string>
+
+    <string name="widget_description">Wyświetla Twój następny cel wspinaczkowy</string>
+    <string name="widget_next_goal">Następny cel</string>
+    <string name="widget_readiness">Gotowość</string>
+    <string name="widget_all_conquered">Wszystkie zdobyte!</string>
+
+    <string name="tab_stats">Statystyki</string>
+    <string name="tab_achievements">Osiągnięcia</string>
+
+    <string name="stats_extra_title">Ciekawostki</string>
+    <string name="stat_total_height">Łączna wysokość</string>
+    <string name="stat_highest_peak">Najwyższy szczyt</string>
+    <string name="stat_hardest_peak">Najtrudniejszy szczyt</string>
+    <string name="stat_regions">Zdobyte regiony</string>
+    <string name="stat_none">—</string>
+
+    <string name="achievements_count">%1$d / %2$d odblokowanych</string>
+    <string name="xp_reward">+%d XP</string>
+
+    <string name="ach_first_summit_title">Pierwsze wejście</string>
+    <string name="ach_first_summit_desc">Zdobądź swoją pierwszą górę</string>
+    <string name="ach_five_summits_title">Pięcioboista</string>
+    <string name="ach_five_summits_desc">Zdobądź 5 gór</string>
+    <string name="ach_ten_summits_title">Eksplorator</string>
+    <string name="ach_ten_summits_desc">Zdobądź 10 gór</string>
+    <string name="ach_himalayan_title">Himalajczyk</string>
+    <string name="ach_himalayan_desc">Zdobądź szczyt powyżej 8000 m n.p.m.</string>
+    <string name="ach_total_height_title">20 kilometrów w górę</string>
+    <string name="ach_total_height_desc">Łączna zdobyta wysokość przekroczy 20 000 m</string>
+    <string name="ach_max_difficulty_title">Hardkor</string>
+    <string name="ach_max_difficulty_desc">Zdobądź górę o trudności 18/20 lub wyższej</string>
+    <string name="ach_globetrotter_title">Globtroter</string>
+    <string name="ach_globetrotter_desc">Zdobądź szczyty w 3 różnych regionach</string>
+    <string name="ach_level_five_title">Weteran</string>
+    <string name="ach_level_five_desc">Osiągnij poziom 5</string>
 </resources>
