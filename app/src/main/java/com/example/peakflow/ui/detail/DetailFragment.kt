@@ -4,137 +4,136 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.peakflow.R
+import com.example.peakflow.data.Mountain
 import com.example.peakflow.data.MountainRepository
+import com.example.peakflow.data.UserStats
 import com.example.peakflow.databinding.FragmentDetailBinding
+import com.example.peakflow.domain.ReadinessLevel
+import com.example.peakflow.ui.heightDisplay
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: DetailViewModel
+    private val viewModel: DetailViewModel by viewModels {
+        DetailViewModelFactory(MountainRepository.getInstance(requireContext()))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val repo = MountainRepository.getInstance(requireContext())
-        viewModel = ViewModelProvider(this, DetailViewModelFactory(repo))[DetailViewModel::class.java]
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val mountainId = arguments?.getInt("mountainId") ?: return binding.root
+        val mountainId = requireArguments().getInt("mountainId")
         viewModel.loadMountain(mountainId)
 
-        viewModel.mountain.observe(viewLifecycleOwner) { m ->
-            binding.tvDetailName.text = m.name
-            binding.tvDetailHeight.text = "${m.height} m n.p.m."
-            binding.tvDetailRegion.text = m.region
-            binding.tvDetailDescription.text = m.description
+        binding.btnConquer.setOnClickListener { viewModel.toggleConquered() }
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
 
-            binding.tvCondValue.text = m.condReq.toString()
-            binding.tvTechValue.text = m.techReq.toString()
-            binding.tvAcclValue.text = m.acclReq.toString()
-            binding.tvRiskValue.text = m.riskReq.toString()
-
-            binding.progressCond.progress = m.condReq
-            binding.progressTech.progress = m.techReq
-            binding.progressAccl.progress = m.acclReq
-            binding.progressRisk.progress = m.riskReq
-
-            // Load hero image
-            binding.ivDetailImage.load(m.imageUrl) {
-                crossfade(300)
-                placeholder(R.drawable.mountain_placeholder)
-                error(R.drawable.mountain_placeholder)
-            }
-            updateReadiness()
-        }
-
-        viewModel.userStats.observe(viewLifecycleOwner) {
-            updateReadiness()
-        }
-
-        viewModel.isConquered.observe(viewLifecycleOwner) { conquered ->
-            if (conquered) {
-                binding.btnConquer.text = getString(R.string.conquered)
-                binding.btnConquer.setIconResource(R.drawable.ic_check_circle)
-                binding.btnConquer.setBackgroundColor(
-                    resources.getColor(R.color.conquered_green, null)
-                )
-            } else {
-                binding.btnConquer.text = getString(R.string.mark_conquered)
-                binding.btnConquer.setIconResource(R.drawable.ic_flag)
-                binding.btnConquer.setBackgroundColor(
-                    resources.getColor(R.color.accent_orange, null)
-                )
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch { collectMountain() }
+                launch { collectConquered() }
+                launch { collectWeather() }
+                launch { collectReadiness() }
             }
         }
+    }
 
-        viewModel.weather.observe(viewLifecycleOwner) { weatherState ->
-            if (weatherState != null) {
+    private suspend fun collectMountain() {
+        viewModel.mountain.collect { m ->
+            m ?: return@collect
+            with(binding) {
+                tvDetailName.text = m.name
+                tvDetailHeight.text = m.heightDisplay
+                tvDetailRegion.text = m.region
+                tvDetailDescription.text = m.description
+                tvCondValue.text = m.condReq.toString()
+                tvTechValue.text = m.techReq.toString()
+                tvAcclValue.text = m.acclReq.toString()
+                tvRiskValue.text = m.riskReq.toString()
+                progressCond.progress = m.condReq
+                progressTech.progress = m.techReq
+                progressAccl.progress = m.acclReq
+                progressRisk.progress = m.riskReq
+                ivDetailImage.load(m.imageUrl) {
+                    crossfade(300)
+                    placeholder(R.drawable.mountain_placeholder)
+                    error(R.drawable.mountain_placeholder)
+                }
+            }
+        }
+    }
+
+    private suspend fun collectConquered() {
+        viewModel.isConquered.collect { conquered ->
+            with(binding.btnConquer) {
+                if (conquered) {
+                    text = getString(R.string.conquered)
+                    setIconResource(R.drawable.ic_check_circle)
+                    setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.conquered_green))
+                } else {
+                    text = getString(R.string.mark_conquered)
+                    setIconResource(R.drawable.ic_flag)
+                    setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.accent_orange))
+                }
+            }
+        }
+    }
+
+    private suspend fun collectWeather() {
+        viewModel.weather.collect { state ->
+            if (state != null) {
                 binding.cardWeather.visibility = View.VISIBLE
-                binding.tvWeatherTemp.text = "${weatherState.temp}°C"
-                binding.tvWeatherWind.text = "${weatherState.wind} km/h"
-                binding.tvWeatherStatus.text = weatherState.conditionText
-                binding.tvWeatherStatus.setTextColor(android.graphics.Color.parseColor(weatherState.conditionColor))
-                binding.tvWeatherDesc.text = weatherState.desc
-                
-                // Extra icons based on state if desired, e.g. adding snow icon near temp
-                if (weatherState.isSnowing) {
-                    binding.tvWeatherDesc.text = weatherState.desc + " (Pada śnieg 🌨️)"
-                } else if (weatherState.isSunny) {
-                    binding.tvWeatherDesc.text = weatherState.desc + " (Czyste niebo ☀️)"
+                with(binding) {
+                    tvWeatherTemp.text = "${state.temp}°C"
+                    tvWeatherWind.text = "${state.wind} km/h"
+                    tvWeatherStatus.text = getString(state.condition.labelRes)
+                    tvWeatherStatus.setTextColor(ContextCompat.getColor(requireContext(), state.condition.colorRes))
+                    tvWeatherDesc.text = getString(state.condition.descRes) + when {
+                        state.isSnowing -> getString(R.string.weather_snowing_suffix)
+                        state.isSunny -> getString(R.string.weather_sunny_suffix)
+                        else -> ""
+                    }
                 }
             } else {
                 binding.cardWeather.visibility = View.GONE
             }
         }
-
-        binding.btnConquer.setOnClickListener {
-            viewModel.toggleConquered()
-        }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        return binding.root
     }
 
-    private fun updateReadiness() {
-        val m = viewModel.mountain.value ?: return
-        val stats = viewModel.userStats.value ?: return
+    private suspend fun collectReadiness() {
+        combine(viewModel.mountain, viewModel.userStats) { m, stats -> m to stats }
+            .collect { (m, stats) -> m?.let { updateReadiness(it, stats) } }
+    }
 
+    private fun updateReadiness(m: Mountain, stats: UserStats) {
         val missingPts = maxOf(0, m.condReq - stats.condition) +
                 maxOf(0, m.techReq - stats.technique) +
                 maxOf(0, m.acclReq - stats.acclimatization) +
                 maxOf(0, m.riskReq - stats.risk)
-
-        // Using formula: 1 missing point = -15%
-        // So 0 misses = 100%, 1 miss = 85%, 2 misses = 70%, 3 = 55%, 4 = 40%
-        val readinessScore = maxOf(0, 100 - (missingPts * 15))
-
-        binding.tvReadinessPercent.text = "$readinessScore%"
-        
-        when {
-            readinessScore >= 80 -> {
-                binding.tvReadinessStatus.text = "Gotowy"
-                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#4CAF50")) // Green
-            }
-            readinessScore >= 50 -> {
-                binding.tvReadinessStatus.text = "Ryzykowne"
-                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#FF9800")) // Orange
-            }
-            else -> {
-                binding.tvReadinessStatus.text = "Zapomnij"
-                binding.tvReadinessStatus.setTextColor(android.graphics.Color.parseColor("#F44336")) // Red
-            }
-        }
+        val score = maxOf(0, 100 - missingPts * 15)
+        val level = ReadinessLevel.from(score)
+        binding.tvReadinessPercent.text = "$score%"
+        binding.tvReadinessStatus.text = getString(level.labelRes)
+        binding.tvReadinessStatus.setTextColor(ContextCompat.getColor(requireContext(), level.colorRes))
     }
 
     override fun onDestroyView() {

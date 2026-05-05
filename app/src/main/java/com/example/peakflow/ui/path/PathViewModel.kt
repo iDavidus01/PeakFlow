@@ -1,32 +1,24 @@
 package com.example.peakflow.ui.path
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.peakflow.data.Mountain
 import com.example.peakflow.data.MountainRepository
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 class PathViewModel(private val repository: MountainRepository) : ViewModel() {
 
-    val conqueredIds: LiveData<Set<Int>> = repository.conqueredIds
+    val conqueredIds: StateFlow<Set<Int>> = repository.conqueredIds
 
-    // Mountains sorted by total difficulty (sum of all requirements)
-    val sortedMountains = MediatorLiveData<List<Mountain>>().apply {
-        addSource(repository.mountains) { mountains ->
-            value = mountains.sortedBy { it.condReq + it.techReq + it.acclReq + it.riskReq }
-        }
-    }
+    val sortedMountains: StateFlow<List<Mountain>> = repository.mountains
+        .map { mountains -> mountains.sortedBy { it.totalDifficulty } }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    // Index of the next suggested mountain (first unconquered in the sorted list)
-    val nextSuggestedIndex = MediatorLiveData<Int>().apply {
-        addSource(sortedMountains) { updateSuggested() }
-        addSource(conqueredIds) { updateSuggested() }
-    }
-
-    private fun MediatorLiveData<Int>.updateSuggested() {
-        val mountains = sortedMountains.value.orEmpty()
-        val conquered = conqueredIds.value.orEmpty()
-        val idx = mountains.indexOfFirst { it.id !in conquered }
-        value = if (idx >= 0) idx else -1
-    }
+    val nextSuggestedIndex: StateFlow<Int> = combine(sortedMountains, conqueredIds) { mountains, conquered ->
+        mountains.indexOfFirst { it.id !in conquered }.takeIf { it >= 0 } ?: -1
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), -1)
 }

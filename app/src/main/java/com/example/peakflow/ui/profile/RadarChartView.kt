@@ -10,6 +10,7 @@ import android.view.View
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
+import kotlin.properties.Delegates
 
 class RadarChartView @JvmOverloads constructor(
     context: Context,
@@ -20,9 +21,10 @@ class RadarChartView @JvmOverloads constructor(
     private val axes = 4
     private val maxValue = 5f
     private val gridLevels = 5
-    private var values = floatArrayOf(0f, 0f, 0f, 0f)
     private val labels = arrayOf("KND", "TCH", "AKL", "RYZ")
     private val dp = context.resources.displayMetrics.density
+
+    private var values: FloatArray by Delegates.observable(FloatArray(4)) { _, _, _ -> invalidate() }
 
     private val gridPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("#22FFFFFF")
@@ -68,34 +70,22 @@ class RadarChartView @JvmOverloads constructor(
     }
 
     fun setStats(condition: Int, technique: Int, acclimatization: Int, risk: Int) {
-        values = floatArrayOf(
-            condition.toFloat(),
-            technique.toFloat(),
-            acclimatization.toFloat(),
-            risk.toFloat()
-        )
-        invalidate()
+        values = floatArrayOf(condition.toFloat(), technique.toFloat(), acclimatization.toFloat(), risk.toFloat())
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        // Take full parent width, respect height constraint
-        val w = MeasureSpec.getSize(widthMeasureSpec)
-        val h = MeasureSpec.getSize(heightMeasureSpec)
-        setMeasuredDimension(w, h)
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec))
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
         val cx = width / 2f
         val cy = height / 2f
         val chartSize = min(width, height)
         val radius = chartSize * 0.30f
         val labelRadius = chartSize * 0.38f
-
         val angles = floatArrayOf(-90f, 0f, 90f, 180f)
 
-        // Draw grid polygons
         for (level in 1..gridLevels) {
             val path = Path()
             val r = radius * level / gridLevels
@@ -109,15 +99,11 @@ class RadarChartView @JvmOverloads constructor(
             canvas.drawPath(path, gridPaint)
         }
 
-        // Draw axis lines
         for (i in 0 until axes) {
             val angle = Math.toRadians(angles[i].toDouble())
-            val x = cx + radius * cos(angle).toFloat()
-            val y = cy + radius * sin(angle).toFloat()
-            canvas.drawLine(cx, cy, x, y, axisPaint)
+            canvas.drawLine(cx, cy, cx + radius * cos(angle).toFloat(), cy + radius * sin(angle).toFloat(), axisPaint)
         }
 
-        // Draw value polygon
         val valuePath = Path()
         for (i in 0 until axes) {
             val angle = Math.toRadians(angles[i].toDouble())
@@ -130,36 +116,28 @@ class RadarChartView @JvmOverloads constructor(
         canvas.drawPath(valuePath, fillPaint)
         canvas.drawPath(valuePath, strokePaint)
 
-        // Draw dots at value points
         for (i in 0 until axes) {
             val angle = Math.toRadians(angles[i].toDouble())
             val r = radius * (values[i] / maxValue)
-            val x = cx + r * cos(angle).toFloat()
-            val y = cy + r * sin(angle).toFloat()
-            canvas.drawCircle(x, y, 4f * dp, dotPaint)
+            canvas.drawCircle(cx + r * cos(angle).toFloat(), cy + r * sin(angle).toFloat(), 4f * dp, dotPaint)
         }
 
-        // Draw labels and values
         for (i in 0 until axes) {
             val angle = Math.toRadians(angles[i].toDouble())
             val lx = cx + labelRadius * cos(angle).toFloat()
             val ly = cy + labelRadius * sin(angle).toFloat()
-
             val labelY = when (i) {
                 0 -> ly - 8f * dp
                 2 -> ly + 12f * dp
                 else -> ly + 4f * dp
             }
-
             canvas.drawText(labels[i], lx, labelY, labelPaint)
-
-            val valueText = "${values[i].toInt()}/${maxValue.toInt()}"
             val valueY = when (i) {
                 0 -> ly + 6f * dp
                 2 -> ly + 24f * dp
                 else -> ly + 18f * dp
             }
-            canvas.drawText(valueText, lx, valueY, valuePaint)
+            canvas.drawText("${values[i].toInt()}/${maxValue.toInt()}", lx, valueY, valuePaint)
         }
     }
 }

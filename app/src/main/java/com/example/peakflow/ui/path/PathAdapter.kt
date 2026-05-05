@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.peakflow.R
 import com.example.peakflow.data.Mountain
+import com.example.peakflow.ui.animateClick
 
 class PathAdapter(
     private val onItemClick: (Mountain) -> Unit
@@ -39,8 +40,7 @@ class PathAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_path_mountain, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_path_mountain, parent, false)
         return ViewHolder(view)
     }
 
@@ -53,36 +53,38 @@ class PathAdapter(
         holder.height.text = "${item.mountain.height} m"
         holder.difficulty.text = "Trudność: ${item.totalDifficulty}/20"
 
-        // Load thumbnail
         holder.thumb.load(item.mountain.imageUrl) {
             crossfade(true)
             placeholder(R.drawable.mountain_placeholder)
             error(R.drawable.mountain_placeholder)
         }
 
-        // Step line visibility (hide for last item)
         holder.stepLine.visibility = if (position < itemCount - 1) View.VISIBLE else View.INVISIBLE
 
-        if (item.isConquered) {
-            holder.status.visibility = View.VISIBLE
-            holder.status.setImageResource(R.drawable.ic_check_circle)
-            holder.status.setColorFilter(ContextCompat.getColor(ctx, R.color.conquered_green))
-            holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.conquered_green))
-            holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.conquered_green))
-            holder.suggestedBadge.visibility = View.GONE
-        } else if (item.isNextSuggested) {
-            holder.status.visibility = View.GONE
-            holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.accent_orange))
-            holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.accent_orange))
-            holder.suggestedBadge.visibility = View.VISIBLE
-        } else {
-            holder.status.visibility = View.GONE
-            holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.text_secondary))
-            holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary))
-            holder.suggestedBadge.visibility = View.GONE
+        when {
+            item.isConquered -> {
+                holder.status.visibility = View.VISIBLE
+                holder.status.setImageResource(R.drawable.ic_check_circle)
+                holder.status.setColorFilter(ContextCompat.getColor(ctx, R.color.conquered_green))
+                holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.conquered_green))
+                holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.conquered_green))
+                holder.suggestedBadge.visibility = View.GONE
+            }
+            item.isNextSuggested -> {
+                holder.status.visibility = View.GONE
+                holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.accent_orange))
+                holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.accent_orange))
+                holder.suggestedBadge.visibility = View.VISIBLE
+            }
+            else -> {
+                holder.status.visibility = View.GONE
+                holder.stepDot.background.setTint(ContextCompat.getColor(ctx, R.color.text_secondary))
+                holder.stepNumber.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary))
+                holder.suggestedBadge.visibility = View.GONE
+            }
         }
 
-        holder.card.setOnClickListener { onItemClick(item.mountain) }
+        holder.card.setOnClickListener { v -> v.animateClick { onItemClick(item.mountain) } }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<PathItem>() {

@@ -6,10 +6,5 @@ import com.example.peakflow.data.MountainRepository
 
 class ProfileViewModelFactory(private val repository: MountainRepository) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
-            return ProfileViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = ProfileViewModel(repository) as T
 }

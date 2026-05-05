@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base Dark Theme -->
     <color name="background_dark">#FF121212</color>
     <color name="surface_dark">#FF1E1E1E</color>
     <color name="divider_dark">#33FFFFFF</color>
 
-    <!-- Text -->
     <color name="text_primary">#E0E0E0</color>
     <color name="text_secondary">#80FFFFFF</color>
 
-    <!-- Accents -->
     <color name="accent_orange">#FFFF8C42</color>
     <color name="accent_blue">#FF64B5F6</color>
     <color name="accent_purple">#FFCE93D8</color>
     <color name="accent_red">#FFEF5350</color>
     <color name="conquered_green">#FF66BB6A</color>
 
-    <!-- Basics -->
+    <color name="status_green">#FF4CAF50</color>
+    <color name="status_yellow">#FFFFC107</color>
+    <color name="status_orange">#FFFF9800</color>
+    <color name="status_red">#FFF44336</color>
+    <color name="status_blue">#FF2196F3</color>
+    <color name="status_cyan">#FF00BCD4</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.peakflow.R
 import com.example.peakflow.data.Mountain
+import com.example.peakflow.ui.animateClick
+import com.example.peakflow.ui.heightDisplay
 
 class MountainAdapter(
     private val onItemClick: (Mountain) -> Unit
@@ -29,8 +31,7 @@ class MountainAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_mountain, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_mountain, parent, false)
         return ViewHolder(view)
     }
 
@@ -40,24 +41,20 @@ class MountainAdapter(
         val isLocked = item.userLevel < m.requiredLevel
 
         holder.name.text = m.name
-        holder.height.text = "${m.height} m n.p.m."
+        holder.height.text = m.heightDisplay
         holder.region.text = m.region
         holder.status.visibility = if (item.isConquered) View.VISIBLE else View.GONE
-        
-        if (isLocked) {
-            holder.recommendedLevel.visibility = View.VISIBLE
-            holder.recommendedLevel.text = "⚠️ Zalecany Lvl ${m.requiredLevel}"
-        } else {
-            holder.recommendedLevel.visibility = View.GONE
-        }
-        
-        holder.card.setOnClickListener { view ->
-            view.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).withEndAction {
-                view.animate().scaleX(1f).scaleY(1f).setDuration(100).withEndAction {
-                    onItemClick(m)
-                }
+
+        holder.recommendedLevel.apply {
+            if (isLocked) {
+                visibility = View.VISIBLE
+                text = context.getString(R.string.recommended_level, m.requiredLevel)
+            } else {
+                visibility = View.GONE
             }
         }
+
+        holder.card.setOnClickListener { v -> v.animateClick { onItemClick(m) } }
 
         holder.thumb.load(m.imageUrl) {
             crossfade(true)
