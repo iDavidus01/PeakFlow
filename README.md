@@ -4,35 +4,56 @@
 
 ## 🚀 Features
 
-*   **Mountain Database**: Explore a curated list of 45 famous mountains worldwide, complete with their height, region, descriptions, and custom requirement stats.
+*   **Mountain Database**: Explore a curated list of 45 famous mountains worldwide, complete with height, region, descriptions, GPS coordinates, and custom requirement stats.
 *   **RPG-style Progression System**: Each mountain holds specific difficulty requirements:
     *   **KND** (Condition)
     *   **TCH** (Technique)
     *   **AKL** (Acclimatization)
     *   **RYZ** (Risk)
-    Conquering a mountain upgrades your overall profile XP and maximizes your stats accordingly!
-*   **Interactive Global Map**: View an OSM-powered (OpenStreetMap) world map containing markers for all available peaks. Markers are color-coded based on the peak's overall difficulty:
-    *   🟢 **Green**: Beginner-friendly
-    *   🟡 **Yellow**: Intermediate
-    *   🟠 **Orange**: Advanced / Expert
-    *   🔴 **Red**: Extreme difficulty
-*   **Path of Ascent ("Droga")**: A suggested progression path ordering the mountains from easiest to hardest, guiding you on what to climb next based on your current skill level.
-*   **Radar Chart Profiling**: A dynamic spider/radar chart that visually constructs your unique climber profile based on the highest peaks you've reached.
 
-## 🆕 Latest Updates
-
-*   **World Map Integration**: Integrated `osmdroid` to introduce a completely offline-ready, global map tab with interactive, color-coded markers.
-*   **Image Handling Improvements**: Replaced slow or broken remote URLs with comprehensive local asset mappings, supporting various extensions like `.jpg` and `.jpeg`.
-*   **UI/UX Polishing**: Redesigned the radar chart text-fitting algorithm, ensuring the "AKL" or "X/5" values no longer overlap or get truncated on smaller screens. 
+    Conquering a mountain upgrades your overall profile XP and maximizes your stats accordingly. Stats are derived from the highest value across all conquered peaks.
+*   **XP & Leveling**: Earn XP equal to a mountain's total difficulty on conquest. Level thresholds follow a quadratic curve — higher levels require exponentially more XP.
+*   **Interactive Global Map**: An OSM-powered (OpenStreetMap) world map with markers for all available peaks, color-coded by difficulty:
+    *   🟢 **Green**: Beginner (difficulty < 10)
+    *   🟡 **Yellow**: Intermediate (10–14)
+    *   🟠 **Orange**: Advanced (15–18)
+    *   🔴 **Red**: Extreme (19+)
+*   **Path of Ascent ("Droga")**: A suggested progression path ordering mountains from easiest to hardest. The next recommended peak is automatically highlighted based on your current progress.
+*   **Radar Chart Profiling**: A dynamic spider/radar chart that visually constructs your unique climber profile across all four stat axes.
+*   **Home Filters**: Search, sort, and filter the mountain list by name, region, height, or difficulty in real time using reactive StateFlow pipelines.
+*   **Next Goal Widget**: Identifies the next reachable unconquered mountain based on your current level — displayed both in-app and on the home screen widget.
+*   **Live Weather on Detail Screen**: Fetches real-time weather data from the Open-Meteo API (no API key required) for each peak using its GPS coordinates and classifies conditions as Ideal, Acceptable, Winter, or Dangerous.
+*   **Readiness Score**: Calculates a 0–100% readiness score for any mountain based on the gap between your current stats and the mountain's requirements.
+*   **Achievements System**: Unlock eight milestones with XP rewards and progress tracking:
+    | Achievement | Requirement | XP |
+    |---|---|---|
+    | First Summit | Conquer any mountain | 50 |
+    | Five Summits | Conquer 5 mountains | 150 |
+    | Ten Summits | Conquer 10 mountains | 300 |
+    | Himalayan | Conquer a peak ≥ 8000 m | 500 |
+    | Total Height | Accumulate 20 000 m total | 200 |
+    | Max Difficulty | Conquer a difficulty 18+ peak | 400 |
+    | Globetrotter | Conquer peaks in 3+ regions | 250 |
+    | Level Five | Reach level 5 | 300 |
+*   **Profile Sub-tabs**: The Profile screen splits into a **Stats** tab (level, XP bar, total height climbed, hardest/highest peak, regions conquered, conquest history) and an **Achievements** tab with per-item progress bars.
+*   **Conquest History**: Timestamped log of every conquered peak, sorted newest-first, displayed in the Stats sub-tab.
+*   **Home Screen Widget**: Shows the next goal mountain name and your current readiness percentage; tapping it opens the app.
 
 ## 🛠️ Tech Stack
 
 *   **Language**: Kotlin
-*   **Architecture**: MVVM (Model-View-ViewModel)
-*   **UI Components**: XML Layouts, Material Design 3, Auto-loading Recycler Views
+*   **Architecture**: MVVM (Model-View-ViewModel) with a singleton `MountainRepository`
+*   **Reactive State**: Kotlin `StateFlow` / `MutableStateFlow` — all UI state is observed via `combine` and `stateIn` operators (no LiveData)
+*   **Coroutines**: `viewModelScope` with `Dispatchers.IO` for network calls
+*   **UI Components**: XML Layouts, View Binding, Material Design 3, RecyclerView, TabLayout + ViewPager2
 *   **Navigation**: Android Jetpack Navigation Component
 *   **Image Loading**: [Coil](https://coil-kt.github.io/coil/)
-*   **Map API**: [Osmdroid](https://github.com/osmdroid/osmdroid) 
+*   **Map**: [Osmdroid](https://github.com/osmdroid/osmdroid) — fully offline-capable OpenStreetMap rendering
+*   **Weather API**: [Open-Meteo](https://open-meteo.com/) — free, no API key required
+*   **Persistence**: `SharedPreferences` — stores conquered IDs with Unix timestamps; migrates legacy data automatically
+*   **Domain layer**: Sealed classes (`Achievement`, `ReadinessLevel`, `WeatherCondition`) and an enum (`SortOrder`) encapsulating all business logic
+*   **Home Screen Widget**: `AppWidgetProvider` (`PeakFlowWidget`) with `RemoteViews`
+*   **Custom Views**: Hand-drawn `RadarChartView` (Canvas API) with adaptive text sizing
 
 ## 💻 Installation
 
@@ -43,10 +64,10 @@
 2.  **Open in Android Studio:**
     Select `File > Open`, then locate the cloned `PeakFlow` directory.
 3.  **Sync Gradle:**
-    Allow Android Studio to download the necessary dependencies (Kotlin, Coil, OSMdroid).
+    Allow Android Studio to download the necessary dependencies (Kotlin, Coil, Osmdroid).
 4.  **Run the App:**
-    Connect a physical device via USB or deploy using an Android Virtual Device (AVD). Ensure the device runs Android 7.0 (API 24) or newer.
-    *Press `Shift + F10` (Windows) or standard Run button to compile.*
+    Connect a physical device via USB or deploy using an Android Virtual Device (AVD). The app requires Android 7.0 (API 24) or newer.
+    *Press `Shift + F10` (Windows) or the standard Run button to compile.*
 
 ## 🤝 Contribution
 
